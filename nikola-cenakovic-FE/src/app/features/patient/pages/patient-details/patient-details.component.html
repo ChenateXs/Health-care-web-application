@@ -1,0 +1,58 @@
+<div class="w-100 text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">Patient details</h2>
+  <div class="d-flex justify-content-around">
+    <table class="table table-striped w-50 table-bordered border-light">
+      <tbody>
+        <tr>
+          <th class="bg-primary text-light w-25">Identifier</th>
+          <td class=" text-primary w-25">{{patient?.identifier}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Name</th>
+          <td class="text-primary">{{patient?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Surname</th>
+          <td class="text-primary">{{patient?.surname}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Gender</th>
+          <td class="text-primary">{{patient?.gender | stringToEnum: getGender}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Birth date</th>
+          <td class="text-primary">{{patient?.birthDate | date:'shortDate'}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Address</th>
+          <td class="text-primary">{{patient?.address}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Phone</th>
+          <td class="text-primary">{{patient?.phone}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Email</th>
+          <td class="text-primary">{{patient?.email}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Deceased</th>
+          <td class="text-primary">{{patient?.deceased}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Marital status</th>
+          <td class="text-primary">{{patient?.maritalStatus| stringToEnum: getMaritalStatus}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Organization</th>
+          <td class="text-primary">{{patient?.organization?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Care provider</th>
+          <td class="text-primary">{{patient?.careProvider?.name}} {{patient?.careProvider?.surname}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a routerLink="/patient"  class="d-flex justify-content-around">Back</a>
+</div>

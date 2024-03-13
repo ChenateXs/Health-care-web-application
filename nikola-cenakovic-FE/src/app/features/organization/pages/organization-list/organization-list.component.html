@@ -1,0 +1,63 @@
+<div class="w-100 text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">List of all organizations</h2>
+  <div class="d-flex justify-content-around mx-5">
+    <div class="d-flex justify-content-between w-75">
+      <a routerLink="/home"></a>
+      <button class="btn btn-primary m-2" (click)="toggleShowfilter()">Filter</button>
+    </div>
+  </div>
+  <div class="d-flex justify-content-around table-responsive">
+    <table class="table table-bordered border-primary mx-5">
+      <thead class="text-light">
+        <tr class="bg-primary">
+          <th>#</th>
+          <th sortable="identifier" (sort)="onSort($event)">Identifier</th>
+          <th sortable="organizationType" (sort)="onSort($event)">Type</th>
+          <th sortable="name" (sort)="onSort($event)">Name</th>
+          <th sortable="address" (sort)="onSort($event)">Address</th>
+          <th sortable="phone" (sort)="onSort($event)">Phone</th>
+          <th sortable="email" (sort)="onSort($event)">Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-primary">
+        <tr *ngFor="let organization of organizationList; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{organization.identifier}}</td>
+          <td>{{getName(organization.organizationType)}}</td>
+          <td>{{organization.name}}</td>
+          <td>{{organization.address}}</td>
+          <td>{{organization.phone}}</td>
+          <td>{{organization.email}}</td>
+          <td>
+            <button class="btn btn-primary mx-1" (click)="onClickEdit(organization.idOrganization)">Edit</button>
+            <button class="btn btn-primary mx-1" (click)="onClickDetails(organization.idOrganization)">Details</button>
+            <button class="btn btn-danger mx-1" (click)="onClickDelete(organization.idOrganization)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <select class="btn btn-primary mb-3 mx-2" [(ngModel)]="pageSize" (change)="loadFilteredOrganizations()">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="pageNo" (pageChange)="onPageChange($event)"
+      [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+  <div class="d-flex justify-content-around mx-5">
+    <div class="d-flex justify-content-between w-75">
+      <div class="d-flex flex-column ">
+        <button class="btn btn-primary m-1" routerLink="/organization/organization-add">Add new organization</button>
+        <button class="btn btn-primary m-1" routerLink="/organization/organization-bulk-import">Import multiple organizations</button>
+      </div>
+      <a routerLink="/home">Home</a>
+    </div>
+  </div>
+</div>
+<div class="w-25 h-100 position-fixed top-0 end-0" *ngIf="filterShow">
+  <app-filter [filterParams]="filterParams" (sendFilterRequest)="formSearchCriteriaList($event)" (cancelFilterRequest)="toggleShowfilter()" ></app-filter>
+</div>

@@ -1,0 +1,14 @@
+{
+  "COMMON": {
+    "SAVE": "Salva",
+    "EDIT": "Modificare",
+    "DELETE": "Elimina",
+    "DETAILS": "Dettagli",
+    "ACTIONS": "Azioni",
+    "HOME": "Casa",
+    "BACK": "Indietro",
+    "UPDATE": "Aggiornare",
+    "CANCEL": "Annulla",
+    "ADD": "Inserisci"
+  }
+}

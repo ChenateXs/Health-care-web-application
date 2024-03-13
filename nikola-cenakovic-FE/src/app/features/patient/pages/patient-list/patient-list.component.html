@@ -1,0 +1,75 @@
+<div class="text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">List of all patients</h2>
+  <div class="d-flex justify-content-around mx-5">
+    <div class="d-flex justify-content-between w-75">
+      <a routerLink="/home"></a>
+      <button class="btn btn-primary m-2" (click)="toggleShowfilter()">Filter</button>
+    </div>
+  </div>
+  <div class="d-flex justify-content-around">
+    <table class="table mx-5 table-bordered border-primary">
+      <thead class="text-light">
+        <tr class="bg-primary">
+          <th>#</th>
+          <th  sortable="identifier" (sort)="onSort($event)">Identifier</th>
+          <th  sortable="name"(sort)="onSort($event)">Name</th>
+          <th  sortable="surname" (sort)="onSort($event)">Surname</th>
+          <th  sortable="gender" (sort)="onSort($event)">Gender</th>
+          <th  sortable="birthDate" (sort)="onSort($event)">Birth date</th>
+          <th  sortable="address" (sort)="onSort($event)">Address</th>
+          <th  sortable="phone" (sort)="onSort($event)">Phone</th>
+          <th  sortable="email" (sort)="onSort($event)">Email</th>
+          <th  sortable="deceased" (sort)="onSort($event)">Deceased</th>
+          <th  sortable="maritalStatus" (sort)="onSort($event)">Marital status</th>
+          <th  sortable="organization" (sort)="onSort($event)">Organization</th>
+          <th  sortable="careProvider" (sort)="onSort($event)">Care provider</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-primary">
+        <tr *ngFor="let patient of patientList; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{patient.identifier}}</td>
+          <td>{{patient.name}}</td>
+          <td>{{patient.surname}}</td>
+          <td>{{patient.gender | stringToEnum: getGender}}</td>
+          <td>{{patient.birthDate | date:'shortDate'}}</td>
+          <td>{{patient.address}}</td>
+          <td>{{patient.phone}}</td>
+          <td>{{patient.email}}</td>
+          <td>{{patient.deceased}}</td>
+          <td>{{patient.maritalStatus| stringToEnum: getMaritalStatus}}</td>
+          <td>{{patient.organization | namingManager : ['name'] : 'No organization'}}</td>
+          <td>{{patient?.careProvider | namingManager: ['name','surname']: 'No care provider'}}</td>
+          <td>
+            <button class="btn btn-primary mx-1" (click)="onClickEdit(patient.idPatient)">Edit</button>
+            <button class="btn btn-primary mx-1" (click)="onClickDetails(patient.idPatient)">Details</button>
+            <button class="btn btn-danger mx-1" (click)="onClickDelete(patient.idPatient)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <select class="btn btn-primary mb-3 mx-2" [(ngModel)]="pageSize" (change)="loadFilteredPatients()">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="pageNo" (pageChange)="onPageChange($event)"
+      [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+  <div class="d-flex justify-content-around mx-5">
+    <div class="d-flex justify-content-between w-75">
+      <div class="d-flex flex-column ">
+        <button class="btn btn-primary m-1" routerLink="/patient/patient-add">Add new patient</button>
+        <button class="btn btn-primary m-1" routerLink="/patient/patient-bulk-import">Import multiple patients</button>
+      </div>
+      <a routerLink="/home">Home</a>
+    </div>
+  </div>
+</div>
+<div class="w-25 h-100 position-fixed top-0 end-0" *ngIf="filterShow">
+  <app-filter [filterParams]="filterParams" (sendFilterRequest)="formSearchCriteriaList($event)" (cancelFilterRequest)="toggleShowfilter()" ></app-filter>
+</div>

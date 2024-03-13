@@ -1,0 +1,50 @@
+<div class="w-100 text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">Practitioner details</h2>
+  <div class="d-flex justify-content-around">
+    <table class="table table-striped w-50 table-bordered border-light">
+      <tbody>
+        <tr>
+          <th class="bg-primary text-light w-25">Identifier</th>
+          <td class=" text-primary w-25">{{practitioner?.identifier}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Name</th>
+          <td class="text-primary">{{practitioner?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Surname</th>
+          <td class="text-primary">{{practitioner?.surname}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Gender</th>
+          <td class="text-primary">{{practitioner?.gender | stringToEnum: getGender}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Birth date</th>
+          <td class="text-primary">{{practitioner?.birthDate | date:'shortDate'}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Address</th>
+          <td class="text-primary">{{practitioner?.address}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Phone</th>
+          <td class="text-primary">{{practitioner?.phone}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Email</th>
+          <td class="text-primary">{{practitioner?.email}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Qualification</th>
+          <td class="text-primary">{{practitioner?.qualification| stringToEnum: getQualification}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Organization</th>
+          <td class="text-primary">{{practitioner?.organization?.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a routerLink="/practitioner"  class="d-flex justify-content-around">Back</a>
+</div>

@@ -1,0 +1,54 @@
+<div class="w-100 text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">Examination details</h2>
+  <div class="d-flex justify-content-around">
+    <table class="table table-striped w-50 table-bordered border-light">
+      <tbody>
+        <tr>
+          <th class="bg-primary text-light w-25">Identifier</th>
+          <td class=" text-primary w-25">{{examination?.identifier}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Status</th>
+          <td class="text-primary">{{examination?.status | stringToEnum: getStatusType}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Service type</th>
+          <td class="text-primary">{{examination?.serviceType?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Priority</th>
+          <td class="text-primary">{{examination?.priority | stringToEnum: getPriorityType}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Start date</th>
+          <td class="text-primary">{{examination?.startDate | date:'shortDate'}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">End date</th>
+          <td class="text-primary">{{examination?.endDate  | date:'shortDate' }}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Diagnosis</th>
+          <td class="text-primary">{{examination?.diagnosis}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Patient</th>
+          <td class="text-primary">{{examination?.patient?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Organization</th>
+          <td class="text-primary">{{examination?.organization?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Practitioners</th>
+          <td class="text-primary">
+            <div *ngFor="let practitioner of examination?.practitioners">
+              {{practitioner.name}} {{practitioner.surname}}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a routerLink="/examination"  class="d-flex justify-content-around">Back</a>
+</div>

@@ -1,0 +1,14 @@
+identifier,type,name,address,phone,email
+AT-11000,1,Atlas,Osmana Đikića 3 Beograd 11000,060 3292411,a@gov.rs
+PB-11000,1,Policlinic Belgrade,Džona Kenedija 10F Beograd 11080,011 3018081,pb@gov.rs
+SHB-11000,2,Special surgical hospital,Braničevska 13 Beograd 11000,011 3448541,shb@gov.rs
+CFCS-11000,3,Clinic for chest surgery,Dr Koste Todorovića 26 Beograd,011 3618476,cfcs@gov.rs
+VMA-11000,3,Vojnomedicinska akademija,Crnotravska 17 Beograd 11000,011 2661122,vma@mod.gov.rs
+VBN-18000,4,Vojna Bolnica Niš,Bulevar Dr Zorana Đinđića bb Niš,018 508841,vbnis@mod.gov.rs
+OBK-36000,5,Opsta bolnica,Jug Bogdanova 110 Kraljevo 36000,036 301988,bolnicastudenicakv@gov.rs
+SHC-11000,1,Special Hospital for Cerebrovascular,Nemanjina 2 Beograd 11000,011 2066800,shc@gov.rs
+HCZ-19000,1,Health center Zajecar,Zajecar,019 425811,zczajecar@gov.rs
+MC-12000,2,Medicinski Centar,Jovana Šerbanovića br.12,012 530555,mcpo@gov.rs
+MFNS-21000,3,Medical Faculty in Novi Sad,Hajduk Veljkova 3 Novi Sad 21000,021 420677,mfns@uns.ac.rs
+FMK-34000,3,Faculty of Medical Sciences Kragujevac,Svetozara Markovića 69 Kragujevac,034 306800,mfk@uk.ac.rs
+OB-26000,5,Opšta bolnica Pančevo,Miloša Trebinjca 11 Pančevo,013 306400,obpancevo@gov.rs

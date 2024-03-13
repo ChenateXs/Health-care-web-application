@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-around">
+  <div class="d-flex flex-column col-lg-6 col-md-8 p-3 m-3 w-50 text-primary" *ngIf="practitionerForm" >
+    <div class="d-flex justify-content-around">
+      <h2>Edit practitioner</h2>
+    </div>
+    <form [formGroup]="practitionerForm">
+      <div class="d-flex flex-column">
+        <label for="identifier">Identifier:</label>
+        <input type="text" id="identifier" class="form-control text-primary border-2 border-primary" formControlName="identifier"/>
+        <p class="alert alert-danger" *ngIf="hasErrors('identifier', 'required')" >
+          Identifier is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="gender">Gender</label>
+        <select id="gender" class="form-select text-primary border-2 border-primary" formControlName="gender">
+          <option *ngFor="let gender of (getGender|keyvalue)" [ngValue]="gender.key" >
+            {{gender.value}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('gender', 'required')" >
+          Gender type is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control text-primary border-2 border-primary" formControlName="name"  />
+        <p class="alert alert-danger" *ngIf="hasErrors('name', 'required')" >
+          Name is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" class="form-control text-primary border-2 border-primary" formControlName="surname"  />
+        <p class="alert alert-danger" *ngIf="hasErrors('surname', 'required')" >
+          Surname is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="birthDate">Birth date</label>
+        <input type="date" id="birthDate" class="form-control text-primary border-2 border-primary" formControlName="birthDate"  />
+        <p class="alert alert-danger" *ngIf="hasErrors('birthDate', 'required')" >
+          birthDate type is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="address">Address</label>
+        <input type="text" id="address" class="form-control text-primary border-2 border-primary" formControlName="address"/>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" class="form-control text-primary border-2 border-primary" formControlName="phone"/>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="email">Email</label>
+        <input type="text" id="email" class="form-control text-primary border-2 border-primary" formControlName="email"/>
+        <p class="alert alert-danger" *ngIf="hasErrors('email', 'pattern')" >
+          Email is not in the right format
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="qualification">Qualification</label>
+        <select id="qualification" class="form-select text-primary border-2 border-primary" formControlName="qualification">
+          <option *ngFor="let qualification of (getQualification|keyvalue)" [ngValue]="qualification.key" >
+            {{qualification.value}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('qualification', 'required')" >
+          Qualification type is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="organization">Organization</label>
+        <select id="organization" class="form-select text-primary border-2 border-primary" formControlName="organization">
+          <option *ngFor="let organization of organizationList" [ngValue]="organization">
+            {{organization.name}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('organization', 'required')" >
+          Organization type is required
+        </p>
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-primary m-3" [disabled]="practitionerForm.invalid" (click)="addPractitioner()">{{'COMMON.ADD'|translate}}</button>
+        <button type="button" class="btn btn-danger m-3"  routerLink="/practitioner">{{'COMMON.CANCEL'|translate}}</button>
+      </div>
+    </form>
+  </div>
+  </div>

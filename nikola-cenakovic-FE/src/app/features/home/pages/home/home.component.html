@@ -1,0 +1,87 @@
+<div class="page-hero  w-100">
+  <img src="/assets/HEALTH_CARE_LAB.jpg" class ="position-fixed top-0 start-0 w-100 h-100" style="z-index: -1;"/>
+  <div class="page d-flex justify-content-center text-light w-100 vh-100">
+    <div class="d-flex flex-column">
+      <h1 class="main-title d-flex justify-content-center bg-primary">Welcome to health care lab</h1>
+      <h2 class = "bg-primary px-2">We hope you are having a great day and that we will make it only better</h2>
+      <div class="d-flex justify-content-center">
+      <a id="explore_btn" href="home#page_1" class="btn btn-outline-primary btn-lg">Explore</a>
+      </div>
+    </div>
+
+  </div>
+  <div id="page_1" class="page d-flex flex-column justify-content-start text-light vh-100 w-100 bg-primary">
+    <h1 class="d-flex justify-content-around h-25 mt-5">View our community</h1>
+
+    <div class="page d-flex justify-content-around ">
+      <div class="card-wrapper">
+        <div class="card bg-primary text-light" style="width: 18rem;">
+          <img src="/assets/ORGANIZATION.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Organizations</h5>
+            <p class="card-text">View all our different organizations that provide the bast treatment.</p>
+            <a routerLink="/organization" class="btn btn-outline-light">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-wrapper">
+        <div class="card" style="width: 18rem;">
+          <img src="/assets/PRACTITIONER.jpg" class="card-img-top" alt="...">
+          <div class="card-body text-primary">
+            <h5 class="card-title">Practitioners</h5>
+            <p class="card-text">View all practitioner that work in different organizations whit different professions and titles.</p>
+            <a routerLink="/practitioner" class="btn btn-primary">View</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card-wrapper">
+        <div class="card bg-primary text-light" style="width: 18rem;">
+          <img src="/assets/PATIENT.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Patients</h5>
+            <p class="card-text">View all patients for whom we provide healthcare.</p>
+            <a routerLink="/patient" class="btn btn-outline-light">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-wrapper">
+        <div class="card" style="width: 18rem;">
+          <img src="/assets/EXAMINATION.jpg" class="card-img-top" alt="...">
+          <div class="card-body text-primary">
+            <h5 class="card-title">Examinations</h5>
+            <p class="card-text">View all examinations that take place in our community.</p>
+            <a routerLink="/examination" class="btn btn-primary">View</a>
+          </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div id="page_2" class="page d-flex justify-content-center text-primary vh-100 w-100 text-primary bg-light">
+    <div class="d-flex flex-column justify-content-start my-5 w-100">
+      <h1 class="d-flex justify-content-around h-50">Our community</h1>
+      <div class="d-flex justify-content-around">
+        <div>
+          <h1 class="d-flex justify-content-around">{{organizationCnt}}</h1>
+          <span>Organizations</span>
+        </div>
+        <div>
+          <h1 class="d-flex justify-content-around">{{practitionerCnt}}</h1>
+          <span>Practitioners</span>
+        </div>
+        <div>
+          <h1 class="d-flex justify-content-around">{{patientCnt}}</h1>
+          <span>Patients</span>
+        </div>
+        <div>
+          <h1 class="d-flex justify-content-around">{{examinationCnt}}</h1>
+          <span>Examinations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

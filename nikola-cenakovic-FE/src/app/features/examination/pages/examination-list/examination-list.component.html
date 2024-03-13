@@ -1,0 +1,75 @@
+<div class="w-100 text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">List of all examinations</h2>
+  <div class="d-flex justify-content-around mx-5">
+    <div class="d-flex justify-content-between w-75">
+      <a routerLink="/home"></a>
+      <button class="btn btn-primary m-2" (click)="toggleShowfilter()">Filter</button>
+    </div>
+  </div>
+  <div class="d-flex justify-content-around">
+    <table class="table mx-5 table-bordered border-primary">
+      <thead class="text-light">
+        <tr class="bg-primary">
+          <th>#</th>
+          <th  sortable="identifier" (sort)="onSort($event)">Identifier</th>
+          <th  sortable="status" (sort)="onSort($event)">Status</th>
+          <th  sortable="serviceType" (sort)="onSort($event)">Service type</th>
+          <th  sortable="priority" (sort)="onSort($event)">Priority</th>
+          <th  sortable="startDate" (sort)="onSort($event)">Start date</th>
+          <th  sortable="endDate" (sort)="onSort($event)">End date</th>
+          <th  sortable="diagnosis" (sort)="onSort($event)">Diagnosis</th>
+          <th  sortable="patient" (sort)="onSort($event)">Patient</th>
+          <th  sortable="organization" (sort)="onSort($event)">Organization</th>
+          <th  sortable="practitioners" (sort)="onSort($event)">Practitioners</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-primary">
+        <tr *ngFor="let examination of examinationList; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{examination.identifier}}</td>
+          <td>{{examination.status | stringToEnum: getStatusType}}</td>
+          <td>{{examination.serviceType.name}}</td>
+          <td>{{examination.priority | stringToEnum: getPriorityType}}</td>
+          <td>{{examination.startDate | date:'shortDate'}}</td>
+          <td>{{examination.endDate | date:'shortDate'}}</td>
+          <td>{{examination.diagnosis}}</td>
+          <td>{{examination.patient.name}} {{examination.patient.surname}}</td>
+          <td>{{examination.organization.name}}</td>
+          <td>
+            <div *ngFor="let practitioner of examination.practitioners">
+              {{practitioner.name}} {{practitioner.surname}}
+            </div>
+          </td>
+          <td>
+            <button class="btn btn-primary mx-1" (click)="onClickEdit(examination.idExamination)">Edit</button>
+            <button class="btn btn-primary mx-1" (click)="onClickDetails(examination.idExamination)">Details</button>
+            <button class="btn btn-danger mx-1" (click)="onClickDelete(examination.idExamination)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <select class="btn btn-primary mb-3 mx-2" [(ngModel)]="pageSize" (change)="loadFilteredExaminations()">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="pageNo" (pageChange)="onPageChange($event)"
+      [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+  <div class="d-flex justify-content-around mx-5">
+    <div class="d-flex justify-content-between w-75">
+      <div class="d-flex flex-column ">
+        <button class="btn btn-primary mx-1" routerLink="/examination/examination-add">Add new examination</button>
+        <button class="btn btn-primary m-1" routerLink="/examination/examination-bulk-import">Import multiple examinations</button>
+      </div>
+      <a routerLink="/home">Home</a>
+    </div>
+  </div>
+</div>
+<div class="w-25 h-100 position-fixed top-0 end-0" *ngIf="filterShow">
+  <app-filter [filterParams]="filterParams" (sendFilterRequest)="formSearchCriteriaList($event)" (cancelFilterRequest)="toggleShowfilter()" ></app-filter>
+</div>

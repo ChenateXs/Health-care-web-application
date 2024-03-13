@@ -1,0 +1,56 @@
+<div class="w-100 text-primary d-flex flex-column my-5">
+  <h4 class="d-flex justify-content-around mb-3">Add .xlsx,.xls,.csv file</h4>
+  <div class="d-flex justify-content-around ">
+    <div class="d-flex justify-content-around w-25">
+      <input class="form-control " type="file" (change)="loadFile($event)" [(ngModel)]="csvFile" accept=".xlsx,.xls,.csv" ngf-max-size="20MB" >
+    </div>
+  </div>
+  <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-between w-25">
+      <button class="btn btn-primary my-2" (click)="uploadFile()" [disabled]="list?.length===0">Upload table</button>
+      <a routerLink="/organization" class="mt-2">Home</a>
+    </div>
+  </div>
+  <div class="d-flex justify-content-around" *ngIf="list.length != 0">
+    <table class="table mx-5 table-bordered border-primary">
+      <thead class="text-light">
+        <tr class="bg-primary">
+          <th>#</th>
+          <th>Identifier</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Gender</th>
+          <th>Birth date</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Deceased</th>
+          <th>Marital status</th>
+          <th>Organization</th>
+          <th>Care provider</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-primary">
+        <tr *ngFor="let patient of list; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{patient.identifier}}</td>
+          <td>{{patient.name}}</td>
+          <td>{{patient.surname}}</td>
+          <td>{{patient.gender | stringToEnum: getGender}}</td>
+          <td>{{patient.birthDate | date:'shortDate'}}</td>
+          <td>{{patient.address}}</td>
+          <td>{{patient.phone}}</td>
+          <td>{{patient.email}}</td>
+          <td>{{patient.deceased}}</td>
+          <td>{{patient.maritalStatus| stringToEnum: getMaritalStatus}}</td>
+          <td>{{patient.organization | namingManager : ['name'] : 'No organization'}}</td>
+          <td>{{patient?.careProvider | namingManager: ['name','surname']: 'No care provider'}}</td>
+          <td>
+            <button class="btn btn-danger mx-1" (click)="remove(i)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+

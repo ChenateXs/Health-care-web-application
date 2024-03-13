@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-around">
+  <div class="d-flex flex-column col-lg-6 col-md-8 p-3 m-3 w-50 text-primary" *ngIf="examinationForm" >
+    <div class="d-flex justify-content-around">
+      <h2>Add examination</h2>
+    </div>
+    <form [formGroup]="examinationForm">
+      <div class="d-flex flex-column">
+        <label for="identifier">Identifier:</label>
+        <input type="text" id="identifier" class="form-control text-primary border-2 border-primary" formControlName="identifier"/>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="status">Status</label>
+        <select id="status" class="form-select text-primary border-2 border-primary" formControlName="status">
+          <option *ngFor="let status of (getStatusType|keyvalue)" [ngValue]="status.key" >
+            {{status.value}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('status', 'required')" >
+          Status is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="serviceType">Service type</label>
+        <select id="serviceType" class="form-select text-primary border-2 border-primary" formControlName="serviceType">
+          <option *ngFor="let serviceType of serviceTypeList" [ngValue]="serviceType" >
+            {{serviceType.name}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('serviceType', 'required')" >
+          Service type is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="priority">Priority</label>
+        <select id="priority" class="form-select text-primary border-2 border-primary" formControlName="priority">
+          <option *ngFor="let priority of (getPriorityType|keyvalue)" [ngValue]="priority.key" >
+            {{priority.value}}
+          </option>
+        </select>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" class="form-control text-primary border-2 border-primary" formControlName="startDate"/>
+        <p class="alert alert-danger" *ngIf="hasErrors('startDate', 'fromDate')" >
+          Start date bigger the end date.
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="endDate">End date</label>
+        <input type="date" id="endDate" class="form-control text-primary border-2 border-primary" formControlName="endDate"/>
+        <p class="alert alert-danger" *ngIf="hasErrors('endDate', 'fromDate')" >
+          Start date bigger the end date.
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="diagnosis">Diagnosis</label>
+        <input type="text" id="diagnosis" class="form-control text-primary border-2 border-primary" formControlName="diagnosis"/>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="patient">Patient</label>
+        <select id="patient" class="form-select text-primary border-2 border-primary" formControlName="patient">
+          <option *ngFor="let patient of patientList" [ngValue]="patient" >
+            {{patient.name}} {{patient.surname}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('patient', 'required')" >
+          Patient is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="organization">Organization</label>
+        <select id="organization" class="form-select text-primary border-2 border-primary" formControlName="organization">
+          <option *ngFor="let organization of organizationList" [ngValue]="organization" >
+            {{organization.name}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('organization', 'required')" >
+          Organization is required
+        </p>
+      </div>
+
+      <div class="d-flex flex-column">
+        <label for="practitioners">Practitioners</label>
+        <select id="practitioners" class="form-select text-primary border-2 border-primary" formControlName="practitioners"  multiple>
+          <option *ngFor="let practitioner of practitionerList" [ngValue]="practitioner" >
+            {{practitioner.name}} {{practitioner.surname}}
+          </option>
+        </select>
+        <p class="alert alert-danger" *ngIf="hasErrors('practitioners', 'required')" >
+          Practitioners are required
+        </p>
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-primary m-3" [disabled]="examinationForm.invalid" (click)="addExamination()">{{'COMMON.ADD'|translate}}</button>
+        <button type="button" class="btn btn-danger m-3"  routerLink="/examination">{{'COMMON.CANCEL'|translate}}</button>
+      </div>
+    </form>
+  </div>
+  </div>

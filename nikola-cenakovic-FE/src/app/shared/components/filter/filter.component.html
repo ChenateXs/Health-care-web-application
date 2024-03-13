@@ -1,0 +1,48 @@
+<div class="h-100 bg-primary d-flex justify-content-center overflow-auto ">
+  <div class="h-100 d-flex flex-column justify-content-start text-light text blockquote" style="padding-top:5rem;">
+    <h2>Filter by</h2>
+    <div *ngFor="let filterParam of filterParams; let i = index">
+      <div class="white-line"></div>
+
+      <input type="checkbox" class="btn-check" id="{{filterParam.key}}{{i}}" [(ngModel)]="filterParam.isChecked" (click)="true" #checkBox />
+      <label class="btn btn-primary w-100 my-2" for="{{filterParam.key}}{{i}}">{{filterParam.name}}</label>
+
+      <div *ngIf="checkBox.checked">
+        <div [ngSwitch]="filterParam.inputType">
+
+          <div *ngSwitchCase="getParamInputType.TEXT">
+            <input type="text" class="form-control my-2" [(ngModel)]="filterParam.value"
+              placeholder="Enter {{filterParam.name}}">
+          </div>
+
+          <div *ngSwitchCase="getParamInputType.BOOLEAN">
+            <select class="form-select my-2" [(ngModel)]="filterParam.value">
+              <option [ngValue]=true>True</option>
+              <option [ngValue]=false>False</option>
+            </select>
+          </div>
+
+          <div *ngSwitchCase="getParamInputType.CHECKBOX">
+            <label >Select:</label>
+            <div class="btn-group d-flex flex-column my-2" role="group"
+              *ngFor="let item of filterParam.value; let j = index">
+              <input type="checkbox" class="btn-check" id="{{filterParam.key}}{{j}}sub" autocomplete="off" [(ngModel)]="item.isChecked">
+              <label class="btn btn-outline-light" for="{{filterParam.key}}{{j}}sub">{{item.name}}</label>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="getParamInputType.DATE">
+            <input type="date" class="form-control my-2" [(ngModel)]="filterParam.value">
+            <select class="form-select my-2" [(ngModel)]="filterParam.operation">
+              <option value="11">Before</option>
+              <option value="12">After</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="white-line"></div>
+    <button class="btn btn-light text-primary m-2" (click)="filterRequest()">Search</button>
+    <button class="btn btn-light text-primary m-2" (click)="cancelFilter()">Cancel</button>
+  </div>
+</div>

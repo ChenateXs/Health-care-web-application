@@ -1,0 +1,34 @@
+<div class="w-100 text-primary d-flex flex-column">
+  <h2 class="d-flex justify-content-around mt-5 mb-3">Organization details</h2>
+  <div class="d-flex justify-content-around">
+    <table class="table table-striped w-50 table-bordered border-light">
+      <tbody>
+        <tr>
+          <th class="bg-primary text-light w-25">Identifier</th>
+          <td class=" text-primary w-25">{{organization?.identifier}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Type</th>
+          <td class="text-primary">{{getName(organization?.organizationType)}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Name</th>
+          <td class="text-primary">{{organization?.name}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Address</th>
+          <td class="text-primary">{{organization?.address}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Phone</th>
+          <td class="text-primary">{{organization?.phone}}</td>
+        </tr>
+        <tr>
+          <th class="bg-primary text-light">Email</th>
+          <td class="text-primary">{{organization?.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a routerLink="/organization"  class="d-flex justify-content-around" queryParamsHandling="preserve">Back</a>
+</div>
